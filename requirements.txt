@@ -1,0 +1,23 @@
+# Core Flask dependencies
+flask==2.2.3
+python-dotenv==1.0.0
+
+# Machine learning and NLP
+scikit-learn==1.2.2
+numpy==1.24.2
+pandas==2.0.0
+nltk==3.8.1
+spacy==3.5.2
+
+# Email handling
+imaplib2==3.6
+email-validator==2.0.0
+
+# Gmail API integration
+google-api-python-client==2.81.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==1.0.0
+
+# Utilities
+tqdm==4.65.0
+pytz==2023.3
