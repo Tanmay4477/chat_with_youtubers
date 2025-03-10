@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Chat Assistant",
+    "version": "1.0.0",
+    "description": "Chat with your favourite youtuber or videos - ask questions, get summaries, and more",
+    "icons": {
+      "16": "assets/icons/16*16.png",
+      "48": "assets/icons/48*48.png",
+      "128": "assets/icons/128*128.png"
+    },
+    "action": {
+      "default_popup": "popup/popup.html",
+      "default_icon": {
+        "16": "assets/icons/16*16.png",
+        "48": "assets/icons/48*48.png",
+        "128": "assets/icons/128*128.png"
+      }
+    },
+    "permissions": [
+      "storage",
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "https://www.youtube.com/*",
+      "https://*.googleapis.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["content.js"]
+      }
+    ]
+}

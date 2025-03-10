@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Chat Assistant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 300px;
+      padding: 15px;
+      margin: 0;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+    }
+    
+    .logo {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      color: #cc0000;
+    }
+    
+    .status {
+      background-color: #f8f8f8;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .status.active {
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .status.inactive {
+      border-left: 4px solid #F44336;
+    }
+    
+    .settings {
+      margin-top: 20px;
+    }
+    
+    .settings label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .settings input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .api-key-field {
+      position: relative;
+    }
+    
+    .toggle-visibility {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    
+    button {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: #aa0000;
+    }
+    
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="../assets/icons/icon48.png" alt="Logo" class="logo">
+    <h1>YouTube Chat Assistant</h1>
+  </div>
+  
+  <div class="status active" id="status">
+    <p>Status: <strong id="status-text">Active</strong> on this page</p>
+    <p id="video-title">No video detected</p>
+  </div>
+  
+  <div class="settings">
+    <h2>Settings</h2>
+    
+    <label for="api-key">
+      API Key:
+      <div class="api-key-field">
+        <input type="password" id="api-key" placeholder="Enter your API key">
+        <button class="toggle-visibility" id="toggle-api-key">👁️</button>
+      </div>
+    </label>
+    
+    <label for="model-name">
+      Model:
+      <select id="model-name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+        <option value="gpt-3.5-turbo">OpenAI GPT-3.5</option>
+        <option value="gpt-4">OpenAI GPT-4</option>
+        <option value="claude-3-haiku">Anthropic Claude 3 Haiku</option>
+        <option value="custom">Custom</option>
+      </select>
+    </label>
+    
+    <div id="custom-endpoint-container" style="display: none;">
+      <label for="api-endpoint">
+        Custom API Endpoint:
+        <input type="text" id="api-endpoint" placeholder="https://api.example.com/chat">
+      </label>
+    </div>
+    
+    <div>
+      <label>
+        <input type="checkbox" id="use-summary" checked>
+        Enable video summarization
+      </label>
+    </div>
+    
+    <div>
+      <label>
+        <input type="checkbox" id="use-transcript" checked>
+        Use video transcript when available
+      </label>
+    </div>
+    
+    <button id="save-settings">Save Settings</button>
+  </div>
+  
+  <div class="footer">
+    <p>YouTube Chat Assistant v1.0.0</p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
