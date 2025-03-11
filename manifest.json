@@ -1,37 +1,37 @@
 {
-    "manifest_version": 3,
-    "name": "YouTube Chat Assistant",
-    "version": "1.0.0",
-    "description": "Chat with your favourite youtuber or videos - ask questions, get summaries, and more",
-    "icons": {
-      "16": "assets/icons/16*16.png",
-      "48": "assets/icons/48*48.png",
-      "128": "assets/icons/128*128.png"
+  "name": "My YT Bookmarks",
+  "version": "0.1.0",
+  "description": "Saving timestamps in YT videos",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/bookmark.png",
+        "assets/play.png",
+        "assets/delete.png",
+        "assets/save.png"
+      ],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/ext-icon.png",
+      "24": "assets/ext-icon.png",
+      "32": "assets/ext-icon.png"
     },
-    "action": {
-      "default_popup": "popup/popup.html",
-      "default_icon": {
-        "16": "assets/icons/16*16.png",
-        "48": "assets/icons/48*48.png",
-        "128": "assets/icons/128*128.png"
-      }
-    },
-    "permissions": [
-      "storage",
-      "activeTab",
-      "scripting"
-    ],
-    "host_permissions": [
-      "https://www.youtube.com/*",
-      "https://*.googleapis.com/*"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://www.youtube.com/*"],
-        "js": ["content.js"]
-      }
-    ]
+    "default_title": "My YT Bookmarks",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
 }
