@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Assistant</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sidebar-container">
+    <header>
+      <h1>Video Assistant</h1>
+      <button id="close-sidebar" title="Close sidebar">✖</button>
+    </header>
+    
+    <div class="tabs">
+      <button class="tab-button active" data-tab="chat">Chat</button>
+      <button class="tab-button" data-tab="summary">Summary</button>
+      <button class="tab-button" data-tab="quiz">Quiz</button>
+    </div>
+    
+    <!-- Chat Tab -->
+    <div class="tab-content active" id="chat-tab">
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <div class="message system">
+            <p>Welcome! Ask any questions about this video.</p>
+          </div>
+        </div>
+        <div class="chat-input">
+          <textarea id="chat-input-text" placeholder="Ask a question about the video..."></textarea>
+          <button id="chat-send-button">Send</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Summary Tab -->
+    <div class="tab-content" id="summary-tab">
+      <div class="summary-container">
+        <button id="generate-summary-button" class="action-button">Generate Summary</button>
+        <div id="summary-content" class="summary-content hidden">
+          <h3>Summary</h3>
+          <div id="summary-text"></div>
+          
+          <h3>Key Points</h3>
+          <ul id="key-points"></ul>
+        </div>
+        <div id="summary-loading" class="loading-spinner hidden">
+          <div class="spinner"></div>
+          <p>Generating summary...</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Quiz Tab -->
+    <div class="tab-content" id="quiz-tab">
+      <div class="quiz-container">
+        <div class="quiz-settings">
+          <button id="generate-quiz-button" class="action-button">Generate Quiz</button>
+          <div class="quiz-options">
+            <label>
+              Questions:
+              <select id="quiz-num-questions">
+                <option value="3">3</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+            <label>
+              Difficulty:
+              <select id="quiz-difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        
+        <div id="quiz-content" class="quiz-content hidden">
+          <div id="quiz-questions"></div>
+          <div class="quiz-controls">
+            <button id="check-answers-button">Check Answers</button>
+            <button id="reset-quiz-button">Reset</button>
+          </div>
+          <div id="quiz-results" class="quiz-results hidden">
+            <h3>Results</h3>
+            <p>You got <span id="correct-answers">0</span> out of <span id="total-questions">0</span> correct.</p>
+          </div>
+        </div>
+        
+        <div id="quiz-loading" class="loading-spinner hidden">
+          <div class="spinner"></div>
+          <p>Generating quiz...</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="error-message" class="error-message hidden">
+      <p id="error-text"></p>
+      <button id="dismiss-error">Dismiss</button>
+    </div>
+  </div>
+  
+  <script src="sidebar.js"></script>
+</body>
+</html>

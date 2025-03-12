@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Video Assistant",
+    "version": "1.0",
+    "description": "Chat with YouTube videos, get summaries, and take quizzes",
+    "permissions": ["activeTab", "storage"],
+    "host_permissions": [
+      "https://*.youtube.com/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://www.youtube.com/watch*"],
+        "js": ["content.js"],
+        "css": ["styles.css"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["sidebar.html", "images/*"],
+        "matches": ["*://www.youtube.com/*"]
+      }
+    ],
+    "action": {
+      "default_icon": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+      },
+      "default_title": "YouTube Video Assistant"
+    },
+    "icons": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  }
