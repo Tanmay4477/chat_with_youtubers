@@ -1,93 +1,54 @@
-# YouTube Video Assistant Chrome Extension
+# React + TypeScript + Vite
 
-This Chrome extension allows users to interact with YouTube videos through AI-powered features:
-- Chat with videos (ask questions about video content)
-- Get video summaries
-- Test comprehension with automatically generated quizzes
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Project Structure
+Currently, two official plugins are available:
 
-The project consists of two main components:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-1. **Chrome Extension**: Frontend UI that appears as a sidebar on YouTube videos
-2. **FastAPI Backend**: Server that processes requests and interacts with the Gemini API
+## Expanding the ESLint configuration
 
-## Setup Instructions
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### Backend Setup
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
-1. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-2. Create a `.env` file by copying the example:
-   ```
-   cp .env.example .env
-   ```
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-3. Add your Gemini API key to the `.env` file:
-   ```
-   GEMINI_API_KEY=your_gemini_api_key_here
-   ```
-
-4. Run the server:
-   ```
-   python run.py
-   ```
-
-The server will start on `http://localhost:8000` by default.
-
-### Chrome Extension Setup
-
-1. Create an `images` folder and add the required icon files:
-   - `images/icon16.png`
-   - `images/icon48.png`
-   - `images/icon128.png`
-
-2. Open Chrome and go to `chrome://extensions/`
-
-3. Enable "Developer mode" (toggle in the top-right corner)
-
-4. Click "Load unpacked" and select the directory containing your extension files
-
-5. The extension should now appear in your browser toolbar
-
-## Using the Extension
-
-1. Go to any YouTube video page
-
-2. Click the extension icon in the YouTube video player controls (or from your browser toolbar)
-
-3. The sidebar will open with three tabs:
-   - **Chat**: Ask questions about the video content
-   - **Summary**: Get a concise summary of the video
-   - **Quiz**: Test your understanding with MCQ questions
-
-4. The sidebar will automatically fetch the video transcript when needed
-
-## Development Notes
-
-### Backend API Endpoints
-
-- `/api/v1/video/chat` - Chat with a video
-- `/api/v1/video/summary` - Generate a video summary
-- `/api/v1/video/quiz` - Generate a quiz from video content
-
-### Configuration
-
-- Edit `background.js` to change the backend API URL if needed
-- Modify the appearance by editing `styles.css`
-
-## Troubleshooting
-
-- If the extension can't connect to the backend, make sure the FastAPI server is running
-- If transcript extraction fails, the video may not have captions available
-- Check browser console logs for any error messages
-
-## Future Enhancements
-
-- Add options page for customizing settings
-- Implement authentication for API requests
-- Add support for more languages
-- Optimize transcript handling for longer videos
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
