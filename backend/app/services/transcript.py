@@ -6,7 +6,7 @@ class TranscriptService:
     """Service for extracting and processing YouTube video transcripts"""
     
     @staticmethod
-    async def get_transcript(video_id: str) -> Optional[List[Transcript]]:
+    def get_transcript(video_id: str) -> Optional[List[Transcript]]:
         """
         Get transcript for a YouTube video
         
@@ -18,7 +18,7 @@ class TranscriptService:
         """
         try:
             # Get transcript from YouTube
-            transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+            transcript_list = YouTubeTranscriptApi.get_transcript(video_id) # may be .fetch canbe used instead of .get_transcript
             
             # Convert to our Transcript model
             return [
@@ -31,6 +31,7 @@ class TranscriptService:
             ]
         except (TranscriptsDisabled, NoTranscriptFound):
             # Handle videos without transcripts
+            print("No Transcript found")
             return None
         except Exception as e:
             # Log any other errors

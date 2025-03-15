@@ -63,7 +63,7 @@ async def get_or_fetch_transcript(
     session_manager.store_transcript(session_id, video_id, transcript)
     return transcript
 
-async def get_session_id(x_session_id: Optional[str] = Header(None)):
+def get_session_id(x_session_id: Optional[str] = Header(None)):
     """
     Get or create session ID from header
     
